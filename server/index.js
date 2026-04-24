@@ -11,10 +11,13 @@ const EMAIL_ID = "you@college.edu";
 const COLLEGE_ROLL = "21XX0000";       
 
 app.get("/", (req, res) => {
-  res.json({ status: "BFHL server is running", endpoint: "POST /bfhl" });
+  res.json({
+    status: "BFHL server is running",
+    endpoints: ["POST /bfhl", "POST /api/bfhl"],
+  });
 });
 
-app.post("/bfhl", (req, res) => {
+function handleBfhl(req, res) {
   const { data } = req.body;
 
   if (!Array.isArray(data)) {
@@ -29,7 +32,10 @@ app.post("/bfhl", (req, res) => {
     college_roll_number: COLLEGE_ROLL,
     ...result,
   });
-});
+}
+
+app.post("/bfhl", handleBfhl);
+app.post("/api/bfhl", handleBfhl);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

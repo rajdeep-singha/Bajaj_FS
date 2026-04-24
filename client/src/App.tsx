@@ -47,47 +47,38 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans">
-      {/* noise overlay */}
-      <div className="pointer-events-none fixed inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=')]" />
-
-      {/* glow blobs */}
-      <div className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/5 rounded-full blur-[120px]" />
-      <div className="pointer-events-none fixed bottom-0 right-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[120px]" />
-
-      <div className="relative max-w-3xl mx-auto px-4 py-12">
+    <div className="min-h-screen bg-[#fff45f] text-black font-mono">
+      <div className="relative max-w-4xl mx-auto px-4 py-10">
 
         {/* ── Header ── */}
-        <header className="mb-10">
+        <header className="mb-8 border-4 border-black bg-[#ff6ad5] p-5 shadow-[8px_8px_0_0_#000]">
           <div className="flex items-center gap-3 mb-1">
-            <span className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase">
+            <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-2 py-1">
               SRM Full Stack Challenge
             </span>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight font-mono">
-            <span className="text-white">Node</span>
-            <span className="text-cyan-400">Graph</span>
-            <span className="text-zinc-500"> /bfhl</span>
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight">
+            <span>Node</span>
+            <span className="text-white bg-black px-2 ml-1">Graph</span>
+            <span className="text-black"> /bfhl</span>
           </h1>
-          <p className="text-zinc-500 text-sm mt-1 font-mono">
-            Enter edge strings like <code className="text-zinc-300">A-&gt;B</code>, one per line or comma-separated.
+          <p className="text-sm mt-2 font-bold">
+            Enter edge strings like <code className="bg-black text-white px-1">A-&gt;B</code>, one per line or comma-separated.
           </p>
         </header>
 
         {/* ── Input form ── */}
-        <form onSubmit={handleSubmit} className="mb-8">
+        <form
+          onSubmit={handleSubmit}
+          className="mb-8 border-4 border-black bg-[#37d5ff] p-5 shadow-[8px_8px_0_0_#000]"
+        >
           <div className="relative">
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               rows={6}
               placeholder={PLACEHOLDER}
-              className="
-                w-full rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 py-3
-                font-mono text-sm text-zinc-200 placeholder-zinc-600
-                focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30
-                resize-none transition-colors duration-150
-              "
+              className="w-full border-4 border-black bg-white px-4 py-3 text-sm font-bold placeholder:text-zinc-500 focus:outline-none focus:bg-yellow-100 resize-none"
             />
           </div>
 
@@ -95,16 +86,11 @@ export default function App() {
             <button
               type="submit"
               disabled={loading}
-              className="
-                flex-1 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:bg-cyan-600
-                text-zinc-950 font-bold font-mono text-sm py-2.5 px-6
-                transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
-                shadow-lg shadow-cyan-500/20
-              "
+              className="flex-1 border-4 border-black bg-[#97ff60] text-black font-black text-sm py-2.5 px-6 transition-transform duration-75 hover:-translate-y-0.5 active:translate-y-1 active:shadow-none shadow-[5px_5px_0_0_#000] disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <span className="inline-block w-3.5 h-3.5 border-2 border-zinc-900/40 border-t-zinc-900 rounded-full animate-spin" />
+                  <span className="inline-block w-3.5 h-3.5 border-2 border-black/40 border-t-black rounded-full animate-spin" />
                   Processing…
                 </span>
               ) : (
@@ -115,11 +101,7 @@ export default function App() {
             <button
               type="button"
               onClick={loadExample}
-              className="
-                rounded-xl border border-zinc-700 bg-zinc-900 hover:bg-zinc-800
-                text-zinc-400 hover:text-zinc-200 font-mono text-sm py-2.5 px-4
-                transition-all duration-150
-              "
+              className="border-4 border-black bg-white text-black font-black text-sm py-2.5 px-4 transition-transform duration-75 hover:-translate-y-0.5 active:translate-y-1 active:shadow-none shadow-[5px_5px_0_0_#000]"
             >
               Load Example
             </button>
@@ -128,8 +110,9 @@ export default function App() {
 
         {/* ── Error ── */}
         {error && (
-          <div className="mb-6 rounded-xl border border-rose-500/40 bg-rose-950/30 px-4 py-3 text-rose-300 font-mono text-sm">
-            <span className="text-rose-400 font-bold">Error: </span>{error}
+          <div className="mb-6 border-4 border-black bg-[#ff7a7a] px-4 py-3 text-black text-sm font-bold shadow-[6px_6px_0_0_#000]">
+            <span className="font-black">Error: </span>
+            {error}
           </div>
         )}
 

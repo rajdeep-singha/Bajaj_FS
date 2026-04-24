@@ -1,9 +1,10 @@
 import { type BFHLResponse } from "../types/api";
 
-const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+const API_BASE = import.meta.env.VITE_API_URL ?? "/api";
 
 export async function postBFHL(data: string[]): Promise<BFHLResponse> {
-  const res = await fetch(`${API_BASE}/bfhl`, {
+  const endpoint = API_BASE.endsWith("/") ? `${API_BASE}bfhl` : `${API_BASE}/bfhl`;
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data }),

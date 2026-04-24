@@ -15,34 +15,33 @@ export const HierarchyCard: React.FC<HierarchyCardProps> = ({
   return (
     <div
       className={`
-        relative rounded-xl border bg-zinc-900/80 p-4 backdrop-blur-sm
-        transition-all duration-300
+        border-4 p-4 bg-white transition-transform duration-100
         ${has_cycle
-          ? "border-rose-500/40 shadow-rose-900/20 shadow-lg"
+          ? "border-black bg-[#ff9a9a] shadow-[6px_6px_0_0_#000]"
           : isLargest
-          ? "border-cyan-400/50 shadow-cyan-900/30 shadow-lg ring-1 ring-cyan-400/20"
-          : "border-zinc-700/50"
+          ? "border-black bg-[#97ff60] shadow-[8px_8px_0_0_#000]"
+          : "border-black bg-white shadow-[6px_6px_0_0_#000]"
         }
       `}
     >
       {/* badges */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <span className="font-mono font-bold text-white text-lg">
-          Root: <span className="text-cyan-300">{root}</span>
+        <span className="font-black text-black text-lg">
+          Root: <span className="bg-black text-white px-2">{root}</span>
         </span>
 
         {has_cycle ? (
-          <span className="text-xs px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono">
+          <span className="text-xs px-2 py-0.5 border-2 border-black bg-white text-black font-black">
             ⚠ cycle
           </span>
         ) : (
-          <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">
+          <span className="text-xs px-2 py-0.5 border-2 border-black bg-white text-black font-black">
             depth {depth}
           </span>
         )}
 
         {isLargest && !has_cycle && (
-          <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">
+          <span className="text-xs px-2 py-0.5 border-2 border-black bg-[#37d5ff] text-black font-black">
             ★ largest
           </span>
         )}
@@ -51,7 +50,7 @@ export const HierarchyCard: React.FC<HierarchyCardProps> = ({
       {/* tree or cycle message */}
       <div className="font-mono text-sm">
         {has_cycle ? (
-          <p className="text-rose-400/80 italic text-sm">
+          <p className="text-black italic text-sm font-bold">
             Cycle detected — no tree structure available.
           </p>
         ) : (
